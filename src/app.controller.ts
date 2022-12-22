@@ -4,7 +4,7 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   @Get('/')
   getHello(): string {
-    //aaaa∂
+    //aaaa∂12å
     return '두번째';
   }
 }
