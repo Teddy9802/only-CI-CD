@@ -1,0 +1,119 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Main_category {
+  id: String!
+  brand: String!
+}
+
+type Sub_category {
+  id: String!
+  sub_category_name: String!
+  main_category: Main_category!
+}
+
+type User {
+  id: String!
+  user_name: String!
+  phone_number: String!
+  email: String!
+  password: String!
+  address: String!
+  grade: GRADE_STATUS_ENUM!
+  deletedAt: DateTime!
+  point: Int!
+}
+
+enum GRADE_STATUS_ENUM {
+  BRONZE
+  SILVER
+  GOLD
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Payment {
+  id: String!
+  status: POINT_TRANSACTION_STATUS_ENUM!
+  impUid: String!
+  amount: Int!
+  createAt: DateTime!
+  user: User!
+}
+
+enum POINT_TRANSACTION_STATUS_ENUM {
+  PAYMENT
+  CANCEL
+}
+
+type Product {
+  id: String!
+  product_name: String!
+  like: Int!
+  price: Int!
+  sub_category: Sub_category!
+  payment: Payment!
+  isSoldout: Boolean!
+  deletedAt: DateTime!
+}
+
+type Query {
+  fetchProduct(id: String!): String!
+  fetchProducts: [Product!]!
+  fetchDeleted: [User!]!
+  fetchLoginUser: User!
+}
+
+type Mutation {
+  createProduct(createInput: CreateInput!): Product!
+  deleteProduct(id: String!): Boolean!
+  restoreProduct(id: String!): Boolean!
+  createUser(createUserInput: CreateUserInput!): User!
+  deleteUser(id: String!): Boolean!
+  updateUser(email: String!, UpdateUserInput: UpdateUserInput!): User!
+  restoreUser(id: String!): Boolean!
+  updateLoginUser(password: String!): Boolean!
+  deleteLoginUser: Boolean!
+  createPayment(impUid: String!, amount: Int!): Payment!
+  cancelPoint(impUid: String!): Payment!
+  login(email: String!, password: String!): String!
+  logout: String!
+}
+
+input CreateInput {
+  product_name: String!
+  like: Int!
+  price: Int!
+  sub_category: Sub_categoryInput!
+}
+
+input Sub_categoryInput {
+  id: String!
+  sub_category_name: String!
+  main_category: Main_categoryInput!
+}
+
+input Main_categoryInput {
+  id: String!
+  brand: String!
+}
+
+input CreateUserInput {
+  user_name: String!
+  phone_number: String!
+  email: String!
+  password: String!
+  address: String!
+}
+
+input UpdateUserInput {
+  user_name: String
+  phone_number: String
+  email: String
+  password: String
+  address: String
+}

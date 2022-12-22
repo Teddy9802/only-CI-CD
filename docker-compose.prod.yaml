@@ -1,0 +1,31 @@
+version: '3.7'
+
+# 컴퓨터들
+services:
+  # 컴퓨터이름
+  my-backend:
+    image: asia.gcr.io/backend-370305/mybackend10-nestjs:1.3
+    platform: linux/x86_64
+    build:
+      context: .
+      dockerfile: Dockerfile
+  #   volumes:
+  #     - ./src:/myfolder/src
+  #   ports:
+  #     - 3000:3000
+  #   env_file:
+  #     - ./.env.docker
+
+  #  컴퓨터이름
+  # my-database:
+  #   image: mysql:latest
+  #   environment:
+  #     MYSQL_DATABASE: 'NewDocker'
+  #     MYSQL_ROOT_PASSWORD: 'root'
+  #   ports:
+  #     - 3306:3306
+
+  # my-redis:
+  #   image: redis:latest
+  #   ports:
+  #     - 6379:6379
