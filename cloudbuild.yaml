@@ -3,14 +3,14 @@ steps:
   - name: docker/compose:1.29.0
     args:
       - -f
-      - work/docker-compose.prod.yaml
+      - docker-compose.prod.yaml
       - build
 
   # 2단계 => docker-compose -f docker-compose.prod.yaml push
   - name: docker/compose:1.29.0
     args:
       - -f
-      - work/docker-compose.prod.yaml
+      - docker-compose.prod.yaml
       - push
 
   # 3단계 => kubectl set image deployment/mybackend-nestjs-service mybackend10-nestjs-sha256-1=asia.gcr.io/backend-370305/mybackend10-nestjs:1.2
